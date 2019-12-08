@@ -9,10 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
-
+import org.hibernate.validator.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -29,7 +31,8 @@ public class Tache {
 	@JsonIgnore
 	private Date dateCreation;
 	
-	//@Range(min=1, max=144)
+	//@Min(value=1, message="Merci de préciser des numeros Heures Prevues comprise entre 1 e 144")
+	@Max(value=144, message="Merci de préciser des numeros Heures Prevues comprise entre 1 e 144")
 	private int nbHeuresPrevues;
 	
 	private int nbHeuresEffectives;
@@ -44,7 +47,7 @@ public class Tache {
 	@ManyToOne
 	private TypeTache typeTache;
 	
-	//@NotEmpty
+	@NotEmpty
 	@ManyToMany
 	private List<Developpeur> developpeurs;
 	
@@ -54,9 +57,14 @@ public class Tache {
 		setDateCreation(new Date());
 	}
 	
-	public Tache(String intitule) {
+	public Tache(String intitule2, Colonne colonne, int nbHeuresPrevues2, List<Developpeur> developpeurs2, TypeTache typeTache2, Projet projet2) {
 		this();
-		this.intitule = intitule;
+		this.intitule = intitule2;
+		this.colonneActuelle = colonne;
+		this.nbHeuresPrevues = nbHeuresPrevues2;
+		this.developpeurs = developpeurs2;
+		this.typeTache = typeTache2;
+		this.projet = projet2;
 	}
 
 	

@@ -26,6 +26,13 @@ public class HistoriqueDeplacement {
 		super();
 	}
 
+	public HistoriqueDeplacement(Tache tache2, Colonne colonne2, Date date2) {
+		this.tache = tache2;
+		this.colonne = colonne2;
+		this.date = date2;
+		// TODO Auto-generated constructor stub
+	}
+
 	public Long getId() {
 		return id;
 	}

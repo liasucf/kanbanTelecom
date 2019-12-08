@@ -16,13 +16,14 @@
 <h1>Ajout d'une Tache</h1>
 <body>
 <form action="ajoutTache" method="post">
+
 <c:if test="${not empty errorMessage}">
    <c:out value="${errorMessage}"/>
 </c:if>
-<table>
+<table id="add">
    <tr>                          
 		<td><label for="Lnom">Projet:</label>
-		<td><label for="projet" >${projet.id}</label><br>
+		<td><label for="projet" >Projet ${projet.id}</label><br>
 	 </tr>
 	 <tr> 
 	<td><label for="Lcol">Colonne:</label>
@@ -33,7 +34,7 @@
 	<td><label for="Ltype">Type de Tache:</label>
 	<td>
 	
-	<select name="typeTache">
+	<select  required="required" name="typeTache">
 	 <c:forEach items="${typeTaches}" var="typeTache">
 	  <option value="${typeTache.id}"> ${typeTache.nom} </option>
 	</c:forEach>
@@ -41,13 +42,13 @@
 	 </tr>
 	 <tr>
  	<td> <label for="Lintitulé:">Intitulé:</label> 
- 	<td><textarea rows="4" cols="50" name="intitule"></textarea>
+ 	<td><textarea minlength=8 required="required" rows="4" cols="50" name="intitule"></textarea>
  	 </tr>
  	 
  	  <tr>
  	<td> <label for="Ldeveloppeurs">Developpeurs:</label>
  	 <td> 
- 	 <select multiple class="form-control"  name="developpeur">
+ 	 <select multiple class="form-control" required="required" name="developpeur">
  	<c:forEach items="${developpeurs}" var="developpeur">
      <option value="${developpeur.id}" > ${developpeur.prenom} </option>
      </c:forEach>
@@ -55,7 +56,7 @@
  	</tr>
  	 <tr>
  	<td> <label for="Lheures"> Nombre d'heures provisoires: </label> 
- 	<td><input type="number" name="heures">
+ 	<td><input required="required" type="number" name="heures"  min="1" max="144">
  	 
  	</tr>
 

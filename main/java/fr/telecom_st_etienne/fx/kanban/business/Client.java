@@ -1,8 +1,8 @@
 package fr.telecom_st_etienne.fx.kanban.business;
 
 
-import java.util.List;
 
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -17,6 +17,11 @@ import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 public class Client {
+	
+	public Client() {
+		
+	}
+	
 	
 	public Client(String nom2) {
 		this.nom = nom2;

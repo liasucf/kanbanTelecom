@@ -25,4 +25,16 @@ public class ClientServiceImpl implements ClientService {
 		return clientDao.findAll();
 	}
 
+	@Override
+	public Client recupererClient(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void supprimerClient(Client client) {
+		// TODO Auto-generated method stub
+		clientDao.delete(client);
+	}
+
 }

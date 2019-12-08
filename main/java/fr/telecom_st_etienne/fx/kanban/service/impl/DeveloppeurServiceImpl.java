@@ -1,5 +1,6 @@
 package fr.telecom_st_etienne.fx.kanban.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +26,8 @@ public class DeveloppeurServiceImpl implements DeveloppeurService {
 	}
 	
 	
-	public Developpeur ajouterDeveloppeur(String nom) {
-		Developpeur developpeur = new Developpeur(nom);
+	public Developpeur ajouterDeveloppeur(String prenom, String nom,String email, Date date) {
+		Developpeur developpeur = new Developpeur(prenom, nom, email, date);
 		developpeurDao.save(developpeur);
 		return developpeur;
 		}

@@ -6,6 +6,7 @@
 <head>
  <link rel="stylesheet" type="text/css" href="style/theme1.css"/>  
  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+ <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"> 
  
 <meta charset="ISO-8859-1">
 
@@ -20,10 +21,11 @@
 <br>
 <table class="w3-table-all w3-hoverable">
        <tr class="w3-light-grey">
-            <td>Nom:</td>
-            <td>Prenom:</td>
-            <td>Email:</td>
-            <td>Start Date:</td>
+       		
+            <td>Nom <a href="?sort=nom"><i class="fa fa-sort-up"></i></a> <a href="?sort=nom,desc"><i class="fa fa-sort-down"></i></a></td>
+            <td>Prenom <a href="?sort=prenom"><i class="fa fa-sort-up"></i></a> <a href="?sort=prenom,desc"><i class="fa fa-sort-down"></i></a></td>
+            <td>Email <a href="?sort=email"><i class="fa fa-sort-up"></i></a> <a href="?sort=email,desc"><i class="fa fa-sort-down"></i></a></td>
+            <td>Date Debut Contrat<a href="?sort=dateDebutContrat"><i class="fa fa-sort-up"></i></a> <a href="?sort=dateDebutContrat,desc"><i class="fa fa-sort-down"></i></a></td>
         </tr>
 	    <c:forEach items="${pageDedeveloppeurs.content}" var="developpeur">
 		    <tr>      
@@ -36,11 +38,14 @@
     </table> 
 <div class="w3-bar">
 <c:if test="${!pageDedeveloppeurs.first}">
-<a href="?page=0" class="w3-button">Primeire pag</a>
-<a href="?page=${pageDedeveloppeurs.number-1}" class="w3-button">Pag precedente</a>
+<a href="?page=0" class="w3-button">Page 1</a>
+<a href="?page=${pageDedeveloppeurs.number-1}" class="w3-button"><i class="fa fa-arrow-left"></i></a>
 </c:if>
-
-<a href="?page=${pageDedeveloppeurs.number+1}" class="w3-button">Pag suivante</a>
+<c:if test="${pageDedeveloppeurs.hasNext()}">
+<a href="?page=${pageDedeveloppeurs.number+1}" class="w3-button"><i class="fa fa-arrow-right"></i></a>
+<a href="?page=${pageDedeveloppeurs.getTotalPages()- 1}" class="w3-button"><i class="fa fa-fast-forward"></i></a>
+</c:if>
+<p> Développeurs -- de ${pageDedeveloppeurs.content.size()} sur ${pageDedeveloppeurs.getTotalElements()} </p>
 </div>
 </div>
 </body>

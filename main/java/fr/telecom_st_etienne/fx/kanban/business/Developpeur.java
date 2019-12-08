@@ -20,9 +20,12 @@ import org.hibernate.validator.constraints.Email;
 
 @Entity
 public class Developpeur {
-	public Developpeur(String prenom) {
+	public Developpeur(String prenom2, String nom2, String email2, Date date) {
 		super();
-		this.prenom = prenom;
+		this.prenom = prenom2;
+		this.nom = nom2;
+		this.email = email2;
+		this.dateDebutContrat = date;
 	}
 
 	@Id 
@@ -49,6 +52,7 @@ public class Developpeur {
 
 	public Developpeur() {
 		// TODO Auto-generated constructor stub
+
 	}
 
 	public Long getId() {

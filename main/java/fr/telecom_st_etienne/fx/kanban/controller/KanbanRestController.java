@@ -1,6 +1,7 @@
 package fr.telecom_st_etienne.fx.kanban.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -19,10 +20,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import fr.telecom_st_etienne.fx.kanban.business.Client;
 import fr.telecom_st_etienne.fx.kanban.business.Developpeur;
 import fr.telecom_st_etienne.fx.kanban.business.Tache;
+import fr.telecom_st_etienne.fx.kanban.service.ClientService;
+import fr.telecom_st_etienne.fx.kanban.service.ColonneService;
 import fr.telecom_st_etienne.fx.kanban.service.DeveloppeurService;
+import fr.telecom_st_etienne.fx.kanban.service.HistoriqueDeplacementService;
+import fr.telecom_st_etienne.fx.kanban.service.ProjetService;
 import fr.telecom_st_etienne.fx.kanban.service.TacheService;
+import fr.telecom_st_etienne.fx.kanban.service.TypeTacheService;
 
 @RestController
 @RequestMapping("/ws/")
@@ -34,13 +41,117 @@ public class KanbanRestController {
 	private TacheService tacheService;
 	@Autowired
 	private DeveloppeurService developpeurService;
+	@Autowired
+	private ClientService clientService;
+	@Autowired
+	private ProjetService projetService;
+	@Autowired
+	private TypeTacheService typeTacheService;
+	@Autowired
+	private ColonneService colonneService;
+	@Autowired
+	private HistoriqueDeplacementService historiqueDeplacementService;
 	
+	/********************    CLIENT       **********************************/
+
 	//Ajouter une developpeur via service web (METHOD POST)
-	@PostMapping("/developpeurs/{prenom}/{email}")
-	public Developpeur ajouterDeveloppeur(@PathVariable String prenom,@PathVariable String email )
+		@PostMapping("/clients/{nom}")
+		public Client ajouterClient(@PathVariable String nom)
+		{	
+			System.out.println("Demande d'ajout d'une client");
+			Client client = clientService.ajouterClient(nom);
+			return client;
+		}
+		//View touts les developpeurs via service web (METHOD GET)
+		@GetMapping(value = "/clients", produces = MediaType.APPLICATION_JSON_VALUE)
+		public List<Client> recupererClients()
+		{
+			logger.info("Appel à la méthode recupererTaches()");
+		    return clientService.recupererClients();
+		}
+		// Méthode permettant de supprimer un developpeur en précisant son id
+		@DeleteMapping("/clients/{id}")
+		public boolean effacerClients(@PathVariable Long id)
+		{
+			Developpeur developpeurs = developpeurService.recupererDeveloppeur(id);
+			if (developpeurs == null) return false;
+			developpeurService.supprimerDeveloppeur(developpeurs);
+			return true;
+		}
+		// Méthode permettant de mettre a jour un developpeur en précisant son id
+		@PutMapping("/developpeurs/{id}")
+		public Developpeur mettreAJourDeveloppeur(@PathVariable Long id )
+		{
+			Developpeur developpeur = developpeurService.recupererDeveloppeur(id);
+			developpeurService.enregisterDeveloppeur(developpeur);
+			return developpeur;
+		}
+		// Méthode permettant de recuperer un developpeur en précisant son id
+		@GetMapping(value = "/developpeurs/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+		public Developpeur recupererDeveloppeur(@PathVariable Long id)
+		{
+			logger.info("Appel à la méthode recupererTache()");
+		    return developpeurService.recupererDeveloppeur(id);
+	
+	
+	
+	
+	
+	
+	
+	/********************    COLONNE       **********************************/
+
+	
+	
+	
+	
+	
+	
+	
+	
+	/********************    COMMENTAIRE       **********************************/
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/********************    HISTORIQUE DEPLACEMENT       **********************************/
+	
+	
+	
+	
+	
+	
+	
+	
+	/********************    PROJET       **********************************/
+	
+	
+	
+	
+	
+	/********************    TYPE TACHE       **********************************/
+	
+	
+	
+	
+	
+	
+	
+	/********************    DEVELOPPEURS       **********************************/
+	//Ajouter une developpeur via service web (METHOD POST)
+	@PostMapping("/developpeurs/{prenom}/{nom}/{email}/{date}")
+	public Developpeur ajouterDeveloppeur(@PathVariable String prenom, @PathVariable String nom, @PathVariable String email,
+			@PathVariable Date date)
 	{	
 		System.out.println("Demande d'ajout d'une developpeur");
-		Developpeur developpeur = developpeurService.ajouterDeveloppeur(prenom);
+		Developpeur developpeur = developpeurService.ajouterDeveloppeur(prenom, nom, email, date);
 		return developpeur;
 	}
 	//View touts les developpeurs via service web (METHOD GET)
@@ -50,6 +161,7 @@ public class KanbanRestController {
 		logger.info("Appel à la méthode recupererTaches()");
 	    return developpeurService.recupererDeveloppeurs();
 	}
+	// Méthode permettant de supprimer un developpeur en précisant son id
 	@DeleteMapping("/developpeurs/{id}")
 	public boolean effacerDeveloppeurs(@PathVariable Long id)
 	{
@@ -58,6 +170,7 @@ public class KanbanRestController {
 		developpeurService.supprimerDeveloppeur(developpeurs);
 		return true;
 	}
+	// Méthode permettant de mettre a jour un developpeur en précisant son id
 	@PutMapping("/developpeurs/{id}")
 	public Developpeur mettreAJourDeveloppeur(@PathVariable Long id )
 	{
@@ -65,13 +178,14 @@ public class KanbanRestController {
 		developpeurService.enregisterDeveloppeur(developpeur);
 		return developpeur;
 	}
+	// Méthode permettant de recuperer un developpeur en précisant son id
 	@GetMapping(value = "/developpeurs/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public Developpeur recupererDeveloppeur(@PathVariable Long id)
 	{
 		logger.info("Appel à la méthode recupererTache()");
 	    return developpeurService.recupererDeveloppeur(id);
 	}
-	
+	/********************    TACHES       **********************************/
 
 		//Effacer  avec le method DELETE
 	@PostMapping
@@ -83,16 +197,18 @@ public class KanbanRestController {
 	@PostMapping("/taches")
 	public Tache ajouterTache()
 	{
-		Tache tache = tacheService.ajouterTache("TestmeHoney");
+		Tache tache = tacheService.ajouterTache("TestmeHoney", null, 0, null, null, null);
 		return tache;
 	}
 	@PostMapping("/taches/{intitule}")
 	public Tache ajouterTache(@PathVariable String intitule)
 	{	
 		System.out.println("Demande d'ajout d'une tache");
-		Tache tache = tacheService.ajouterTache(intitule);
+		Tache tache = tacheService.ajouterTache(intitule, null, 0, null, null, null);
 		return tache;
 	}
+	// Méthode permettant de supprimer une tâche en précisant son id
+
 	@DeleteMapping("/taches/{id}")
 	public boolean effacerTache(@PathVariable Long id)
 	{
@@ -127,12 +243,7 @@ public class KanbanRestController {
 	    return tacheService.recupererTache(id);
 	}
 
-	/**
-	 * Cette méthode permet d'ajouter une nouvelle tache
-	 * 
-	 * @param intitule de la tache
-	 * @return un objet de type Tache
-	 */
+
 	@PostMapping(value="/taches/{intitule}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public Tache tachePost(@PathVariable String intitule) {
 		Tache tache = new Tache();
@@ -146,17 +257,6 @@ public class KanbanRestController {
 		return tache;		
 	}
 	
-	// Méthode permettant de supprimer une tâche en précisant son id
-	@DeleteMapping(value="/taches/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public boolean supprimerTache(@PathVariable Long id)
-	{
-		Tache tache = tacheService.recupererTache(id);
-		if (tache==null) {
-			return false;
-		}
-		tacheService.supprimerTache(tache);
-		return true;
-	}
 	
 	// Méthode permettant d’obtenir toutes les tâches dont l’intitulé contient le mot précisé 
 	// dans l’URL

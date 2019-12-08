@@ -30,5 +30,10 @@ public class ColonneServiceImpl implements ColonneService {
 	public List<Colonne> recupererColonnes(){
 		return colonneDao.findAll();
 	}
+	@Override
+	public void supprimerColonne(Colonne colonne) {
+		// TODO Auto-generated method stub
+		colonneDao.delete(colonne);
+	}
 
 }
