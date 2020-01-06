@@ -2,7 +2,6 @@ package fr.telecom_st_etienne.fx.kanban.service;
 
 import java.util.List;
 
-import fr.telecom_st_etienne.fx.kanban.business.Tache;
 import fr.telecom_st_etienne.fx.kanban.business.TypeTache;
 
 public interface TypeTacheService {
@@ -14,5 +13,7 @@ public interface TypeTacheService {
 		TypeTache recupererTypeTache(Long id);
 	
 		void supprimerTypeTache(TypeTache typeTache);
+
+		TypeTache enregisterTypeTache(TypeTache typeTache);
 
 }

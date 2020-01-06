@@ -1,6 +1,7 @@
 package fr.telecom_st_etienne.fx.kanban.service.impl;
 
 import java.util.Date;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class HistoriqueDeplacementImpl implements HistoriqueDeplacementService {
 	private HistoriqueDeplacementDAO historiqueDAO;
 	
 	@Override
-	public HistoriqueDeplacement saveHistory(Tache tache, Colonne colonne, Date date) {
+	public HistoriqueDeplacement ajouterHistory(Tache tache, Colonne colonne, Date date) {
 		HistoriqueDeplacement history = new HistoriqueDeplacement(tache, colonne, date);
 		return historiqueDAO.save(history);}
 		// TODO Auto-generated method stub
@@ -28,5 +29,22 @@ public class HistoriqueDeplacementImpl implements HistoriqueDeplacementService {
 	
 		
 	}
+	@Override
+	public HistoriqueDeplacement recupererHistoriqueDeplacement(Long id) {
+		// TODO Auto-generated method stub
+		return historiqueDAO.findOne(id);
+	}
+	@Override
+	public void supprimerHistoriqueDeplacement(HistoriqueDeplacement historiqueDeplacement) {
+		// TODO Auto-generated method stub
+		historiqueDAO.delete(historiqueDeplacement);
+
+		
+	}
+	@Override
+	public HistoriqueDeplacement enregisterHistoriqueDeplacement(HistoriqueDeplacement historiqueDeplacement) {
+		return historiqueDAO.save(historiqueDeplacement);
+	}
+
 
 }

@@ -31,8 +31,8 @@ public class Tache {
 	@JsonIgnore
 	private Date dateCreation;
 	
-	//@Min(value=1, message="Merci de préciser des numeros Heures Prevues comprise entre 1 e 144")
-	@Max(value=144, message="Merci de préciser des numeros Heures Prevues comprise entre 1 e 144")
+	@Min(value = 0)
+	@Max(value = 144)
 	private int nbHeuresPrevues;
 	
 	private int nbHeuresEffectives;

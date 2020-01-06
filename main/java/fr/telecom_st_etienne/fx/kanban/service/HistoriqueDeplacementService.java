@@ -15,5 +15,7 @@ public interface HistoriqueDeplacementService {
 	
 	HistoriqueDeplacement recupererHistoriqueDeplacement(Long id);
 	void supprimerHistoriqueDeplacement(HistoriqueDeplacement historiqueDeplacement);
+
+	HistoriqueDeplacement enregisterHistoriqueDeplacement(HistoriqueDeplacement historiqueDeplacement);
 	
 }

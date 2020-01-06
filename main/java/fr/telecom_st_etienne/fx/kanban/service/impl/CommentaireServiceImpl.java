@@ -2,6 +2,7 @@ package fr.telecom_st_etienne.fx.kanban.service.impl;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,6 +41,10 @@ public class CommentaireServiceImpl implements CommentaireService {
 	public void supprimerCommentaire(Commentaire commentaire) {
 		// TODO Auto-generated method stub
 		commentaireDao.delete(commentaire);
+	}
+	@Override
+	public Commentaire enregisterCommentaire(Commentaire commentaire) {
+		return commentaireDao.save(commentaire);
 	}
 
 }

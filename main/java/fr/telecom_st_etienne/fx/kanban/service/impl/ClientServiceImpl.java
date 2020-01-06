@@ -2,6 +2,7 @@ package fr.telecom_st_etienne.fx.kanban.service.impl;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +36,10 @@ public class ClientServiceImpl implements ClientService {
 	public void supprimerClient(Client client) {
 		// TODO Auto-generated method stub
 		clientDao.delete(client);
+	}
+	@Override
+	public Client enregisterClient(Client client) {
+		return clientDao.save(client);
 	}
 
 }

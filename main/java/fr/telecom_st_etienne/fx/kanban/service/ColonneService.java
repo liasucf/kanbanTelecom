@@ -11,5 +11,6 @@ public interface ColonneService {
 	Colonne recupererColonne(Long id);
 	List<Colonne> recupererColonnes();
 	void supprimerColonne(Colonne colonne);
+	Colonne enregisterColonne(Colonne colonne);
 
 }

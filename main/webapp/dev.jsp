@@ -17,15 +17,15 @@
 <h1>List Developpeurs</h1>
 <div class="w3-container">
 
-
+<!-- <td>Nom <a href="developpeurs?sortBy=nom&direction=desc"><i class="fa fa-sort-up"></i></a> <a href="developpeurs?sortBy=nom&direction=desc"><i class="fa fa-sort-down"></i></a></td> -->
+<!--             <td>Prenom <a href="developpeurs?sortBy=prenom&direction=asc"><i class="fa fa-sort-up"></i></a> <a href="developpeurs?sortBy=prenom&direction=desc"><i class="fa fa-sort-down"></i></a></td> -->
 <br>
 <table class="w3-table-all w3-hoverable">
        <tr class="w3-light-grey">
-       		
-            <td>Nom <a href="?sort=nom"><i class="fa fa-sort-up"></i></a> <a href="?sort=nom,desc"><i class="fa fa-sort-down"></i></a></td>
-            <td>Prenom <a href="?sort=prenom"><i class="fa fa-sort-up"></i></a> <a href="?sort=prenom,desc"><i class="fa fa-sort-down"></i></a></td>
-            <td>Email <a href="?sort=email"><i class="fa fa-sort-up"></i></a> <a href="?sort=email,desc"><i class="fa fa-sort-down"></i></a></td>
-            <td>Date Debut Contrat<a href="?sort=dateDebutContrat"><i class="fa fa-sort-up"></i></a> <a href="?sort=dateDebutContrat,desc"><i class="fa fa-sort-down"></i></a></td>
+            <td>Nom <a href="?sort=nom&page=${pageDedeveloppeurs.number}"><i class="fa fa-sort-up"></i></a> <a href="?sort=nom,desc&page=${pageDedeveloppeurs.number}"><i class="fa fa-sort-down"></i></a></td>
+            <td>Prenom <a href="?sort=prenom&page=${pageDedeveloppeurs.number}"><i class="fa fa-sort-up"></i></a> <a href="?sort=prenom,desc&page=${pageDedeveloppeurs.number}"><i class="fa fa-sort-down"></i></a></td>
+            <td>Email <a href="?sort=email&page=${pageDedeveloppeurs.number}"><i class="fa fa-sort-up"></i></a> <a href="?sort=email,desc&page=${pageDedeveloppeurs.number}"><i class="fa fa-sort-down"></i></a></td>
+            <td>Date Debut Contrat<a href="?sort=dateDebutContrat&page=${pageDedeveloppeurs.number}"><i class="fa fa-sort-up"></i></a> <a href="?sort=dateDebutContrat,desc&page=${pageDedeveloppeurs.number}"><i class="fa fa-sort-down"></i></a></td>
         </tr>
 	    <c:forEach items="${pageDedeveloppeurs.content}" var="developpeur">
 		    <tr>      
@@ -38,14 +38,14 @@
     </table> 
 <div class="w3-bar">
 <c:if test="${!pageDedeveloppeurs.first}">
-<a href="?page=0" class="w3-button">Page 1</a>
-<a href="?page=${pageDedeveloppeurs.number-1}" class="w3-button"><i class="fa fa-arrow-left"></i></a>
+<a href="?sort=${sortParr}&page=0" class="w3-button">Page 1</a>
+<a href="?sort=${sortParr}&page=${pageDedeveloppeurs.number-1}" class="w3-button"><i class="fa fa-arrow-left"></i></a>
 </c:if>
 <c:if test="${pageDedeveloppeurs.hasNext()}">
-<a href="?page=${pageDedeveloppeurs.number+1}" class="w3-button"><i class="fa fa-arrow-right"></i></a>
-<a href="?page=${pageDedeveloppeurs.getTotalPages()- 1}" class="w3-button"><i class="fa fa-fast-forward"></i></a>
+<a href="?sort=${sortParr}&page=${pageDedeveloppeurs.number+1}" class="w3-button"><i class="fa fa-arrow-right"></i></a>
+<a href="?sort=${sortParr}&page=${pageDedeveloppeurs.getTotalPages()- 1}" class="w3-button"><i class="fa fa-fast-forward"></i></a>
 </c:if>
-<p> Développeurs -- de ${pageDedeveloppeurs.content.size()} sur ${pageDedeveloppeurs.getTotalElements()} </p>
+<p> Developpeurs ${pageOff + 1}  de ${pageDedeveloppeurs.content.size() + pageOff} sur ${pageDedeveloppeurs.getTotalElements()} </p>
 </div>
 </div>
 </body>

@@ -18,4 +18,6 @@ public interface ClientService {
 	
 	void supprimerClient(Client client);
 
+	Client enregisterClient(Client client);
+
 }

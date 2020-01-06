@@ -2,11 +2,12 @@ package fr.telecom_st_etienne.fx.kanban.service.impl;
 
 import java.util.List;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.telecom_st_etienne.fx.kanban.business.Projet;
-import fr.telecom_st_etienne.fx.kanban.business.Tache;
 import fr.telecom_st_etienne.fx.kanban.dao.ProjetDAO;
 import fr.telecom_st_etienne.fx.kanban.service.ProjetService;
 
@@ -30,6 +31,17 @@ public class ProjetServiceImpl implements ProjetService {
 	public List<Projet> recupererProjets() {
 		return projetDao.findAll();
 	}
+	@Override
+	public void supprimerProjet(Projet projet) {
+		// TODO Auto-generated method stub
+		projetDao.delete(projet);
+		
+	}
+	@Override
+	public Projet enregisterProjet(Projet projet) {
+		return projetDao.save(projet);
+	}
+
 
 
 }

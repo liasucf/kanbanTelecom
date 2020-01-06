@@ -1,6 +1,8 @@
 package fr.telecom_st_etienne.fx.kanban.service.impl;
 
 import java.util.Date;
+
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,10 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import fr.telecom_st_etienne.fx.kanban.business.Client;
 import fr.telecom_st_etienne.fx.kanban.business.Developpeur;
-import fr.telecom_st_etienne.fx.kanban.business.Tache;
-import fr.telecom_st_etienne.fx.kanban.dao.ClientDAO;
 import fr.telecom_st_etienne.fx.kanban.dao.DeveloppeurDAO;
 import fr.telecom_st_etienne.fx.kanban.service.DeveloppeurService;
 
@@ -49,6 +48,9 @@ public class DeveloppeurServiceImpl implements DeveloppeurService {
 
 	@Override
 	public Page<Developpeur> recupererDeveloppeurs(Pageable pageable) {
+		
 		return developpeurDao.findAll(pageable);	
 	}
+	
+
 }

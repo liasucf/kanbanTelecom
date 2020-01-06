@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
+
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -111,15 +112,24 @@ public class KanbanController {
 	@RequestMapping(value = { "/developpeurs" })
 	public ModelAndView dev(@PageableDefault(size = 8)  @SortDefault.SortDefaults({
         @SortDefault(sort = "nom"),
-        @SortDefault(sort = "prenom"),
+        @SortDefault(sort = "prenom") ,
         @SortDefault(sort = "email"),
         @SortDefault(sort = "dateDebutContrat")
-    }) Pageable pageable) {
+    }) Pageable pageable
+			
+			) {
+		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("dev");
 		mav.addObject("pageDedeveloppeurs", developpeurService.recupererDeveloppeurs(pageable));
+		mav.addObject("pageOff", pageable.getOffset());
+		mav.addObject("sortParr", pageable.getSort().toString().replace(',', '&').replace(':', ',').replace(" " , ""));
+
 		return mav;
 	}
+	
+
+	
 	
 	@PostConstruct
 	public void init() throws ParseException {
@@ -145,19 +155,16 @@ public class KanbanController {
 			colonneService.ajouterColonne("Terminé");
 		}
 		if(developpeurService.recupererDeveloppeurs().isEmpty()) {
-			developpeurService.ajouterDeveloppeur("Bia","Feijo","bia@gmail.com", new SimpleDateFormat("dd/MM/yyyy").parse("06/12/2019") );
-			developpeurService.ajouterDeveloppeur("Lea","Pereira", "lea@gmail.com", new SimpleDateFormat("dd/MM/yyyy").parse("06/10/2019"));
-			developpeurService.ajouterDeveloppeur("Leo","Siqueira","leo@gmail.com",new SimpleDateFormat("dd/MM/yyyy").parse("06/09/2019") );
-			developpeurService.ajouterDeveloppeur("Tia", "Li","tia@gmail.com", new SimpleDateFormat("dd/MM/yyyy").parse("06/08/2019"));
-			developpeurService.ajouterDeveloppeur("Gabi", "Atan","gabi@gmail.com", new SimpleDateFormat("dd/MM/yyyy").parse("06/02/2019"));
-			developpeurService.ajouterDeveloppeur("Dudu","Mato","dudu@gmail.com" , new SimpleDateFormat("dd/MM/yyyy").parse("04/01/2019"));
-			developpeurService.ajouterDeveloppeur("Kit", "Hello", "kit@gmail.com", new SimpleDateFormat("dd/MM/yyyy").parse("16/10/2018"));
-			developpeurService.ajouterDeveloppeur("Rafa","Melo","rafa@gmail.com",new SimpleDateFormat("dd/MM/yyyy").parse("01/02/2017") );
-			developpeurService.ajouterDeveloppeur("Mandy","Kubrusly", "mandy@gmail.com", new SimpleDateFormat("dd/MM/yyyy").parse("06/03/2015"));
+			developpeurService.ajouterDeveloppeur("Aia","Feijo","Aia@gmail.com", new SimpleDateFormat("dd/MM/yyyy").parse("06/12/2019") );
+			developpeurService.ajouterDeveloppeur("Bea","Pereira", "Bea@gmail.com", new SimpleDateFormat("dd/MM/yyyy").parse("06/10/2019"));
+			developpeurService.ajouterDeveloppeur("Ceo","Siqueira","Ceo@gmail.com",new SimpleDateFormat("dd/MM/yyyy").parse("06/09/2019") );
+			developpeurService.ajouterDeveloppeur("Dia", "Li","Dia@gmail.com", new SimpleDateFormat("dd/MM/yyyy").parse("06/08/2019"));
+			developpeurService.ajouterDeveloppeur("Fabi", "Atan","Fabi@gmail.com", new SimpleDateFormat("dd/MM/yyyy").parse("06/02/2019"));
+			developpeurService.ajouterDeveloppeur("Gudu","Mato","Gudu@gmail.com" , new SimpleDateFormat("dd/MM/yyyy").parse("04/01/2019"));
+			developpeurService.ajouterDeveloppeur("Hit", "Hello", "Hit@gmail.com", new SimpleDateFormat("dd/MM/yyyy").parse("16/10/2018"));
+			developpeurService.ajouterDeveloppeur("Iafa","Melo","Iafa@gmail.com",new SimpleDateFormat("dd/MM/yyyy").parse("01/02/2017") );
+			developpeurService.ajouterDeveloppeur("Jandy","Kubrusly", "Jandy@gmail.com", new SimpleDateFormat("dd/MM/yyyy").parse("06/03/2015"));
 			
-			for (int i = 0; i < 10; i++) {
-				developpeurService.ajouterDeveloppeur("Mandi"+i,"Kubru"+i, "mandy"+i+"@gmail.com", new SimpleDateFormat("dd/MM/yyyy").parse("06/"+i+"/2015") );
-			}
 			
 		}
 		if (tacheService.recupererTaches().isEmpty()) {

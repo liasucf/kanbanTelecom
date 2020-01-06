@@ -2,6 +2,7 @@ package fr.telecom_st_etienne.fx.kanban.service.impl;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,5 +40,10 @@ public class TypeTacheServiceImpl implements TypeTacheService {
 			typeTacheDao.delete(typeTache);
 		
 	}
+	@Override
+	public TypeTache enregisterTypeTache(TypeTache typeTache) {
+		return typeTacheDao.save(typeTache);
+	
 
+}
 }

@@ -2,12 +2,12 @@ package fr.telecom_st_etienne.fx.kanban.service.impl;
 
 import java.util.List;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import fr.telecom_st_etienne.fx.kanban.business.Client;
 import fr.telecom_st_etienne.fx.kanban.business.Colonne;
-import fr.telecom_st_etienne.fx.kanban.business.Tache;
 import fr.telecom_st_etienne.fx.kanban.dao.ColonneDAO;
 import fr.telecom_st_etienne.fx.kanban.service.ColonneService;
 
@@ -34,6 +34,10 @@ public class ColonneServiceImpl implements ColonneService {
 	public void supprimerColonne(Colonne colonne) {
 		// TODO Auto-generated method stub
 		colonneDao.delete(colonne);
+	}
+	@Override
+	public Colonne enregisterColonne(Colonne colonne) {
+		return colonneDao.save(colonne);
 	}
 
 }
